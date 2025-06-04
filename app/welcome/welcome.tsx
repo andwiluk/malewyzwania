@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import footer from "./img/footer.png";
 import map1 from "./img/mapa1.png";
@@ -10,54 +10,108 @@ import map6 from "./img/mapa6.png";
 import map7 from "./img/mapa7.png";
 import map8 from "./img/mapa8.png";
 import wyzwaniaTop from "./img/wyzwaniaTop.png";
+import TripModal from "~/components/TripModal/TripModal";
 
 export function Welcome() {
-  const [mapId, setMapId] = React.useState<number>(parseInt('1'));
+  const [mapId, setMapId] = useState<number>(parseInt("1"));
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  React.useEffect(() => {
-    const storedMapId = localStorage.getItem('mapId');
+  useEffect(() => {
+    const storedMapId = localStorage.getItem("mapId");
     if (storedMapId) {
       setMapId(parseInt(storedMapId));
     }
   }, []);
 
-  const maps: Record<number, string> = { 1: map1, 2: map2, 3: map3, 4: map4, 5: map5, 6: map6, 7: map7, 8: map8 };
+  const maps: Record<number, string> = {
+    1: map1,
+    2: map2,
+    3: map3,
+    4: map4,
+    5: map5,
+    6: map6,
+    7: map7,
+    8: map8,
+  };
 
   return (
-    <main className="flex items-center justify-center pb-4 w-[1650px] mx-auto">
+    <main className="flex items-center justify-center pb-4 w-[1650px] mx-auto z-[1]">
       <div className="flex-1 flex flex-col items-center gap-0 min-h-0">
-      {/* <header className="flex flex-col items-center gap-9"> */}
-        <div className="max-w-[1650px] w-full space-y-0 px-4 header">
+        {/* <header className="flex flex-col items-center gap-9"> */}
+        <div className="max-w-[1650px] w-full space-y-0 px-4 header"></div>
+        {/* </header> */}
+        <div className="max-w-[1650px] max-w-[1650px] w-full space-y-0 px-4 challengesTop"></div>
+        <div
+          className="max-w-[1650px] w-full space-y-0 px-4 map"
+          style={{
+            backgroundImage: `url(${maps[mapId]})`,
+            transition: "background-image 0.8s ease-in-out",
+          }}
+        >
+          <Button
+            positionX={343}
+            positionY={2120}
+            mapId={1}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={1370}
+            positionY={2090}
+            mapId={2}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={560}
+            positionY={1790}
+            mapId={3}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={175}
+            positionY={1415}
+            mapId={4}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={895}
+            positionY={1275}
+            mapId={5}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={165}
+            positionY={810}
+            mapId={6}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={1075}
+            positionY={470}
+            mapId={7}
+            setMapId={setMapId}
+          />
+          <Button
+            positionX={690}
+            positionY={150}
+            mapId={8}
+            setMapId={setMapId}
+          />
         </div>
-      {/* </header> */}
-      <div className="max-w-[1650px] max-w-[1650px] w-full space-y-0 px-4 challengesTop">
-        
+
+        <div className="max-w-[1650px] w-full space-y-0 px-4 footer"></div>
       </div>
-      <div
-        className="max-w-[1650px] w-full space-y-0 px-4 map"
-        style={{
-          backgroundImage: `url(${maps[mapId]})`,
-          transition: "background-image 0.8s ease-in-out",
-        }}
+
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg tripModalButton"
       >
-        <Button positionX={343} positionY={2120} mapId={1} setMapId={setMapId} />
-        <Button positionX={1370} positionY={2090} mapId={2} setMapId={setMapId} />
-        <Button positionX={560} positionY={1790} mapId={3} setMapId={setMapId} />
-        <Button positionX={175} positionY={1415} mapId={4} setMapId={setMapId} />
-        <Button positionX={895} positionY={1275} mapId={5} setMapId={setMapId} />
-        <Button positionX={165} positionY={810} mapId={6} setMapId={setMapId} />
-        <Button positionX={1075} positionY={470} mapId={7} setMapId={setMapId} />
-        <Button positionX={690} positionY={150} mapId={8} setMapId={setMapId} />
+        Zdefiniuj etapy
+      </button>
 
-        
-      </div>
+      <TripModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
-      <div className="max-w-[1650px] w-full space-y-0 px-4 footer">
-      </div>
-
-      </div>
       <style>
-      {`
+        {`
         .header {
         background-color: #f0f0f0;
         background-image: url(${wyzwaniaTop});
@@ -84,27 +138,45 @@ export function Welcome() {
         height: 431px;
         }
 
+        .tripModalButton {
+          position: absolute;
+          top: 4470px;
+          left: 556px;
+          background-color: #FFAA10;
+          color: white;
+          padding: 10px 20px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
       `}
       </style>
     </main>
   );
 }
 
-export function Button({ positionX, positionY, mapId, setMapId}: { positionX: number; positionY: number, mapId: number, setMapId: React.Dispatch<React.SetStateAction<number>> }) {
+export function Button({
+  positionX,
+  positionY,
+  mapId,
+  setMapId,
+}: {
+  positionX: number;
+  positionY: number;
+  mapId: number;
+  setMapId: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const className = `xButton${mapId}`;
 
   const handleClick = () => {
     setMapId(mapId);
-    localStorage.setItem('mapId', mapId.toString());
-  }
+    localStorage.setItem("mapId", mapId.toString());
+  };
 
   return (
-    <div
-      className={className}
-      onClick={handleClick}
-    >
+    <div className={className} onClick={handleClick}>
       <style>
-      {`
+        {`
         .xButton${mapId} {
           height: 200px;
           width: 200px;
