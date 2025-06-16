@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import footer from "./img/footer.png";
 import map1 from "./img/mapa1.png";
-import map2 from "./img/mapa2.png";
-import map3 from "./img/mapa3.png";
-import map4 from "./img/mapa4.png";
-import map5 from "./img/mapa5.png";
-import map6 from "./img/mapa6.png";
-import map7 from "./img/mapa7.png";
-import map8 from "./img/mapa8.png";
+
 import wyzwaniaTop from "./img/wyzwaniaTop.png";
 import TripModal from "~/components/TripModal/TripModal";
-import { Route } from "react-router";
 
 export function Welcome() {
   const [mapId, setMapId] = useState<number>(parseInt("1"));
+  const [stage, setStage] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -26,13 +20,6 @@ export function Welcome() {
 
   const maps: Record<number, string> = {
     1: map1,
-    2: map2,
-    3: map3,
-    4: map4,
-    5: map5,
-    6: map6,
-    7: map7,
-    8: map8,
   };
 
   return (
@@ -50,32 +37,38 @@ export function Welcome() {
           }}
         > */}
         <div
-          className="max-w-[1650px] w-full space-y-0 px-4 map"
-          style={{
-            backgroundImage: `url(assets/mapa-0.jpg)`,
-            transition: "background-image 0.8s ease-in-out",
-          }}
+          className="max-w-[1650px] w-full space-y-0 main"
+          style={{ backgroundImage: `url('/assets/mapa-0.jpg')` }}
         >
-          <div>
-            {/* <Button
+          <div
+            className={`w-full space-y-0 px-4 map map${stage}`}
+            style={{
+              backgroundImage: `url('/assets/Krok${stage}/mapa-${stage}.png')`,
+              transition: "background-image 0.8s ease-in-out",
+            }}
+          >
+            <div>
+              {/* <Button
               positionX={343}
               positionY={2120}
               mapId={1}
               setMapId={setMapId}
             /> */}
-            <Button
-              positionX={1200}
-              positionY={2030}
-              mapId={1}
-              setMapId={setMapId}
-            />
-            {/* <Button
+              <Button
+                positionX={1200}
+                positionY={2030}
+                stage={1}
+                // setStage={setStage}
+                onClick={() => setStage(1)}
+                // setMapId={setMapId}
+              />
+              {/* <Button
               positionX={560}
               positionY={1790}
               mapId={3}
               setMapId={setMapId}
             /> */}
-            {/*}
+              {/*}
             <Button
               positionX={175}
               positionY={1415}
@@ -106,6 +99,7 @@ export function Welcome() {
               mapId={8}
               setMapId={setMapId}
             /> */}
+            </div>
           </div>
         </div>
         <div className="max-w-[1650px] w-full space-y-0 px-4 footer"></div>
@@ -164,51 +158,54 @@ export function Welcome() {
     </main>
   );
 }
-
 export function Button({
   positionX,
   positionY,
-  mapId,
-  setMapId,
+  stage,
+  // setStage,
+  onClick,
 }: {
   positionX: number;
   positionY: number;
-  mapId: number;
-  setMapId: React.Dispatch<React.SetStateAction<number>>;
+  stage: number;
+  // setStage: React.Dispatch<React.SetStateAction<number>>;
+  onClick: any;
 }) {
-  const className = `xButton${mapId}`;
+  const className = `xButton${stage}`;
 
-  const handleClick = () => {
-    setMapId(mapId);
-    localStorage.setItem("mapId", mapId.toString());
-  };
+  // const handleClick = () => {
+  //   const nextStage = stage + 1;
+  //   setStage(nextStage);
+  //   // localStorage.setItem("mapId", nextStage.toString());
+  //   // localStorage.setItem("stage", nextStage.toString());
+  // };
 
   return (
     <>
-      <button className={className} onClick={handleClick}></button>
-      <div className={`route route${mapId}`}></div>
+      <button className={className} onClick={onClick}></button>
+      <div className={`route route${stage}`}></div>
       <style>
         {`
-        .xButton${mapId} {
+        .xButton${stage} {
           height: 285px;
           width: 300px;
-          background-color: transparent;
+          // background-color: transparent;
           cursor: pointer;
           position: absolute;
           top: ${positionY}px;
           left: ${positionX}px;
           z-index: 10;
-          background-image: url(/assets/Krok${mapId}/start1.png);
+          background-image: url(/assets/Krok${stage}/x1.png);
 
           // transition: background-color 0.3s ease;
           &:hover {
-            background-image: url(/assets/Krok${mapId}/start2.png);
+            background-image: url(/assets/Krok${stage}/x2.png);
           }
         }
 
-        .route${mapId} {
+        .route${stage} {
           position: absolute;
-          background-image: url(/assets/Krok${mapId}/path_gray.png);
+          background-image: url(/assets/Krok${stage}/path_gray.png);
           // top: ${positionY + 100}px;
           // left: ${positionX + 100}px;
           top: 1810px;
@@ -218,8 +215,26 @@ export function Button({
           display: none;
         }
 
-        .xButton${mapId}:hover + .route${mapId} {
+        .xButton${stage}:hover + .route${stage} {
           display: block;
+        }
+
+        .map1 {
+          .xButton1, .route1 {
+            display: block;
+          }
+
+          .xButton1 {
+            background-image: url(/assets/Krok1/x2.png);
+          }
+
+          .route1 {
+            background-image: url(/assets/Krok1/path_red.png);
+          }
+
+          .xButton2 {
+            display: block;
+          }
         }
       `}
       </style>

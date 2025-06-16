@@ -16,8 +16,6 @@ type TripModalProps = {
   onClose: () => void;
 };
 
-const LOCAL_STORAGE_KEY = "tripStages";
-
 const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
   const [stages, setStages] = useState<Stages>({
     stage1: "",
@@ -27,10 +25,17 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
     stage5: "",
     stage6: "",
   });
+  const [heroName, setHeroName] = useState<string>("");
 
   useEffect(() => {
     if (isOpen) {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      const saved = localStorage.getItem("tripStages");
+      const heroName = localStorage.getItem("heroName");
+
+      if (heroName) {
+        setHeroName(heroName);
+      }
+
       if (saved) {
         setStages(JSON.parse(saved));
       }
@@ -44,6 +49,10 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
     setStages({ ...stages, [stage]: e.target.value });
   };
 
+  const handleNameChange = (name: string) => {
+    setHeroName(name);
+  };
+
   const handleClear = () => {
     setStages({
       stage1: "",
@@ -53,10 +62,16 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
       stage5: "",
       stage6: "",
     });
+
+    setHeroName("");
+
+    localStorage.removeItem("tripStages");
+    localStorage.removeItem("heroName");
   };
 
   const handleSave = () => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(stages));
+    localStorage.setItem("tripStages", JSON.stringify(stages));
+    localStorage.setItem("heroName", heroName);
 
     console.log("Saved stages:", stages);
     onClose();
@@ -75,24 +90,22 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-red-500 font-bold text-xl"
+          className="absolute top-2 right-2 text-red-500 font-bold text-xl cursor-pointer"
         >
           ✕
         </button>
-        <div className="text-blue-900 text-center">
-          <h2 className="text-lg font-bold text-center">
-            PRZED TOBĄ 6 ETAPÓW WYCIECZKI!
-          </h2>
-
+        <div className="text-blue-900 text-center text-[20px]">
           <p className="text-center mt-2">
-            Zdecyduj ile kilometrów ma mieć Twoje poszczególne etapy
+            Przed Tobą 6 etapów wycieczki!
+            <br />
+            Zdecyduj ile kilometrów mają mieć Twoje poszczególne etapy
             <span className="text-red-600">*</span>. Pamiętaj, to tylko zabawa
             :)
             <br />
-            <strong>Udanej podróży Mały Bohaterze!</strong>
+            <b>Udanej podróży Mały Bohaterze!</b>
           </p>
 
-          <p className="text-xs text-center mt-2 text-red-600">
+          <p className="text-xs text-center mt-2 text-red-600 text-[14px]">
             *nie musisz definiować długości wszystkich etapów już teraz, możesz
             to zrobić w trakcie trwania wycieczki!
           </p>
@@ -118,16 +131,26 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
           })}
         </div>
 
-        <div className="mt-6 flex justify-between">
+        <div className="mt-4 text-center text-blue-700">
+          <input
+            className="w-[300px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-blue-700 font-bold"
+            placeholder="Wpisz imię Bohatera..."
+            onChange={(e) => handleNameChange(e.target.value)}
+            type="text"
+            value={heroName}
+          />
+        </div>
+
+        <div className="mt-6 flex justify-around">
           <button
             onClick={handleClear}
-            className="bg-white text-black px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+            className="bg-white text-blue-700 text-[16px] px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer"
           >
             Wyczyść
           </button>
           <button
             onClick={handleSave}
-            className="bg-white text-black px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+            className="bg-white text-blue-700 text-[16px] px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer"
           >
             Zapisz
           </button>
