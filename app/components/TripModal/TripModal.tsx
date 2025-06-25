@@ -85,76 +85,77 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-      className="bg-orange-200 rounded-lg p-6 w-120 relative tripModal border-1 border-gray-500"
-      onClick={(e) => e.stopPropagation()}
+        className="bg-orange-200 rounded-lg p-6 w-120 relative tripModal border-1 border-gray-500"
+        onClick={(e) => e.stopPropagation()}
       >
-      <button
-        onClick={onClose}
-        className="absolute top-2 right-2 text-red-500 font-bold text-xl cursor-pointer"
-      >
-        ✕
-      </button>
-      <div className="text-blue-900 text-center text-[20px] font-bold">
-        <p className="text-center mt-2 font-bold">
-        Przed Tobą 6 etapów wycieczki!
-        <br />
-        Zdecyduj ile kilometrów mają mieć Twoje poszczególne etapy
-        <span className="text-red-600">*</span>. Pamiętaj, to tylko zabawa
-        :)
-        <br />
-        <b>Udanej podróży Mały Bohaterze!</b>
-        </p>
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-red-500 font-bold text-xl cursor-pointer"
+        >
+          ✕
+        </button>
+        <div className="text-blue-900 text-center text-[20px] font-bold">
+          <p className="text-center mt-2 font-bold">
+            Przed Tobą 6 etapów wycieczki!
+            <br />
+            Zdecyduj ile kilometrów mają mieć Twoje poszczególne etapy
+            <span className="text-red-600">*</span>. Pamiętaj, to tylko zabawa
+            :)
+            <br />
+            <b>Udanej podróży Mały Bohaterze!</b>
+          </p>
 
-        <p className="text-xs text-center mt-2 text-red-600 text-[14px] font-bold">
-        *nie musisz definiować długości wszystkich etapów już teraz, możesz
-        to zrobić w trakcie trwania wycieczki!
-        </p>
-      </div>
+          <p className="text-xs text-center mt-2 text-red-600 text-[14px] font-bold">
+            *nie musisz definiować długości wszystkich etapów już teraz, możesz
+            to zrobić w trakcie trwania wycieczki!
+          </p>
+        </div>
 
-      <div className="mt-4 space-y-2">
-        {[...Array(6)].map((_, index) => {
-        const stageKey = `stage${index + 1}` as keyof Stages;
-        return (
-          <div key={index} className="flex items-center justify-center">
-          <label className="w-24 text-green-700 font-semibold font-bold">
-            Etap {index + 1}
-          </label>
+        <div className="mt-4 space-y-2">
+          {[...Array(6)].map((_, index) => {
+            const stageKey = `stage${index + 1}` as keyof Stages;
+            return (
+              <div key={index} className="flex items-center justify-center">
+                <label className="w-24 text-green-700 font-semibold font-bold">
+                  Etap {index + 1}
+                </label>
+                <input
+                  type="text"
+                  value={stages[stageKey]}
+                  onChange={(e) => handleInputChange(e, stageKey)}
+                  placeholder=""
+                  className="w-[150px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-blue-700 font-bold"
+                />
+                &nbsp;<span className="text-blue-700">km</span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 text-center text-blue-700">
           <input
+            className="w-[300px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-blue-700 font-bold"
+            placeholder="Wpisz imię Bohatera..."
+            onChange={(e) => handleNameChange(e.target.value)}
             type="text"
-            value={stages[stageKey]}
-            onChange={(e) => handleInputChange(e, stageKey)}
-            placeholder=""
-            className="w-[150px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-blue-700 font-bold"
+            value={heroName}
           />
-          </div>
-        );
-        })}
-      </div>
+        </div>
 
-      <div className="mt-4 text-center text-blue-700">
-        <input
-        className="w-[300px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-blue-700 font-bold"
-        placeholder="Wpisz imię Bohatera..."
-        onChange={(e) => handleNameChange(e.target.value)}
-        type="text"
-        value={heroName}
-        />
-      </div>
-
-      <div className="mt-6 flex justify-around">
-        <button
-        onClick={handleClear}
-        className="bg-white text-blue-700 text-[16px] px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer font-bold"
-        >
-        Wyczyść
-        </button>
-        <button
-        onClick={handleSave}
-        className="bg-white text-blue-700 text-[16px] px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer font-bold"
-        >
-        Zapisz
-        </button>
-        <style>{`
+        <div className="mt-6 flex justify-around">
+          <button
+            onClick={handleClear}
+            className="bg-white text-blue-700 text-[16px] px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer font-bold"
+          >
+            Wyczyść
+          </button>
+          <button
+            onClick={handleSave}
+            className="bg-white text-blue-700 text-[16px] px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer font-bold"
+          >
+            Zapisz
+          </button>
+          <style>{`
       .tripModal {
         background-color: #ffaa10;
 
@@ -163,7 +164,7 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
         }
       }
         `}</style>
-      </div>
+        </div>
       </div>
     </div>
   );

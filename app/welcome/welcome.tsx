@@ -14,6 +14,10 @@ import {
   Mountain,
   Path1,
   Path2,
+  Path3,
+  Path4,
+  Path5,
+  Path6,
   Ptero,
   Step1,
   Step2,
@@ -22,12 +26,15 @@ import {
   XButton1,
   XButton2,
   XButton3,
+  XButton4,
+  XButton5,
+  XButton6,
+  XButton7,
 } from "./wyzwania.style";
 
 export function Welcome() {
   const [stage, setStage] = useState<number>(0);
   const [xHovered, setXHovered] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -55,7 +62,7 @@ export function Welcome() {
 
   const handleStartButtonClick = () => {
     if (stage === 0) {
-      if (!parsedStages.stage1.length) {
+      if (!parsedStages?.stage1?.length) {
         setIsModalOpen(true);
       } else {
         safeSetStage(1);
@@ -67,12 +74,12 @@ export function Welcome() {
   };
 
   return (
-    <main className="flex items-center justify-center pb-4 w-[1650px] mx-auto z-[1]">
+    <main className="flex items-center justify-center pb-4 w-[1900px] mx-auto z-[1]">
       <div className="flex-1 flex flex-col items-center gap-0 min-h-0">
-        <div className="max-w-[1650px] w-full space-y-0 px-4 header"></div>
-        <div className="max-w-[1650px] max-w-[1650px] w-full space-y-0 px-4 challengesTop"></div>
+        <div className="max-w-[1920px] w-full space-y-0 px-4 header"></div>
+        <div className="max-w-[1920px] max-w-[1920px] w-full space-y-0 px-4 challengesTop"></div>
         <div
-          className="max-w-[1650px] w-full space-y-0 main"
+          className="max-w-[1920px] w-full space-y-0 main"
           style={{ backgroundImage: `url('/assets/mapa-0.jpg')` }}
         >
           <div
@@ -131,8 +138,56 @@ export function Welcome() {
                   <Flowers2 />
                   <Mountain />
                   <Cloud>
-                    <span>{parsedStages.stage1} m</span>
+                    <span>{parsedStages.stage1} km</span>
                   </Cloud>
+                </>
+              )}
+
+              {stage >= 3 && (
+                <>
+                  <Path3 color={stage >= 4 ? "green" : "red"} />
+                  <XButton4
+                    color={stage >= 4 ? "red" : "gray"}
+                    onMouseEnter={() => stage < 4 && setXHovered(true)}
+                    onMouseLeave={() => setXHovered(false)}
+                    onClick={() => safeSetStage(4)}
+                  />
+                </>
+              )}
+
+              {stage >= 4 && (
+                <>
+                  <Path4 color={stage >= 5 ? "green" : "red"} />
+                  <XButton5
+                    color={stage >= 5 ? "red" : "gray"}
+                    onMouseEnter={() => stage < 5 && setXHovered(true)}
+                    onMouseLeave={() => setXHovered(false)}
+                    onClick={() => safeSetStage(5)}
+                  />
+                </>
+              )}
+
+              {stage >= 5 && (
+                <>
+                  <Path5 color={stage >= 6 ? "green" : "red"} />
+                  <XButton6
+                    color={stage >= 6 ? "red" : "gray"}
+                    onMouseEnter={() => stage < 6 && setXHovered(true)}
+                    onMouseLeave={() => setXHovered(false)}
+                    onClick={() => safeSetStage(6)}
+                  />
+                </>
+              )}
+
+              {stage >= 6 && (
+                <>
+                  <Path6 color={stage >= 7 ? "green" : "red"} />
+                  <XButton7
+                    color={stage >= 7 ? "red" : "gray"}
+                    onMouseEnter={() => stage < 7 && setXHovered(true)}
+                    onMouseLeave={() => setXHovered(false)}
+                    onClick={() => safeSetStage(7)}
+                  />
                 </>
               )}
             </Step1>
@@ -156,7 +211,7 @@ export function Welcome() {
             </ButtonsContainer>
           </div>
         </div>
-        <div className="max-w-[1650px] w-full space-y-0 px-4 footer"></div>
+        <div className="max-w-[1920px] w-full space-y-0 px-4 footer"></div>
       </div>
 
       <TripModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
@@ -169,14 +224,14 @@ export function Welcome() {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        height: 2279px;
+        height: 2630px;
         }
 
         .map {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        height: 2314px;
+        height: 2717px;
         position: relative;
         }
 
