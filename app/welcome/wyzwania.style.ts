@@ -204,7 +204,7 @@ export const Hi = styled.div`
   position: absolute;
   top: 1855px;
   left: 1045px;
-  display: none;
+  // display: none;
 `;
 
 export const Dino = styled.div`
@@ -220,9 +220,9 @@ export const Dino = styled.div`
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 3s;
 
-  &:hover + ${Hi} {
-    display: block;
-  }
+  // &:hover + ${Hi} {
+  //   display: block;
+  // }
 `;
 
 export const Flowers = styled.div`

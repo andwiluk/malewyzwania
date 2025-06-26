@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import footer from "./img/footer.png";
 
@@ -36,6 +36,11 @@ export function Welcome() {
   const [stage, setStage] = useState<number>(0);
   const [xHovered, setXHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dinoHovered, setDinoHovered] = useState(false);
+  const [tooltipHovered, setTooltipHovered] = useState(false);
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const hideTooltipTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {
@@ -71,6 +76,29 @@ export function Welcome() {
     } else {
       safeSetStage(0);
     }
+  };
+
+  const showTooltip = dinoHovered || tooltipHovered;
+
+  const handleDinoMouseLeave = () => {
+    hideTooltipTimeout.current = setTimeout(() => {
+      setDinoHovered(false);
+    }, 200);
+  };
+
+  const handleTooltipMouseEnter = () => {
+    setTooltipHovered(true);
+    if (hideTooltipTimeout.current) {
+      clearTimeout(hideTooltipTimeout.current);
+      hideTooltipTimeout.current = null;
+    }
+  };
+
+  const handleTooltipMouseLeave = () => {
+    setTooltipHovered(false);
+    hideTooltipTimeout.current = setTimeout(() => {
+      setDinoHovered(false);
+    }, 200);
   };
 
   return (
@@ -112,8 +140,129 @@ export function Welcome() {
                     onClick={() => safeSetStage(2)}
                   />
                   <Volcano />
-                  <Dino />
-                  <Hi />
+                  <Dino
+                    onMouseEnter={() => {
+                      setDinoHovered(true);
+                      audioRef.current?.play();
+                    }}
+                    // onMouseLeave={() => {
+                    //   setDinoHovered(false);
+                    //   // audioRef.current?.pause();
+                    //   // audioRef.current!.currentTime = 0;
+                    // }}
+                    onMouseLeave={handleDinoMouseLeave}
+                    style={{ position: "relative", zIndex: 10 }}
+                  />
+                  {showTooltip && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: 1290,
+                          top: 1600,
+                          zIndex: 100,
+                          background: "#FFB800",
+                          borderRadius: 24,
+                          padding: 32,
+                          width: 400,
+                          boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                          color: "#1A1A1A",
+                          fontFamily: "inherit",
+                        }}
+                        onMouseEnter={handleTooltipMouseEnter}
+                        onMouseLeave={handleTooltipMouseLeave}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: 16,
+                          }}
+                        >
+                          {/* <div
+                          style={{
+                            width: 80,
+                            height: 80,
+                            borderRadius: "50%",
+                            background: "#fff",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginRight: 16,
+                          }}
+                        >
+                          <Dino style={{ width: 60, height: 60 }} />
+                        </div> */}
+                          <div>
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: 32,
+                                color: "#E94E1B",
+                              }}
+                            >
+                              T-Rex
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: 18, marginBottom: 16 }}>
+                          Choć Tea Rex znany jest jako samotny łowca, istnieją
+                          dowody, że Tyranozaury mogły żyć w grupach. Co
+                          ciekawe, młodociany Tea Rex był znacznie smuklejszy i
+                          szybszy – wyglądał bardziej jak „super drapieżne
+                          struś” niż masywny czołg, którym stawał się w
+                          dorosłości. Miał potężną głowę, krótkie, ale silne
+                          przednie łapy i długie, mocne nogi, które pozwalały mu
+                          biegać. Jego ogon służył mu za przeciwwagę.
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 4,
+                          }}
+                        >
+                          <button
+                            style={{
+                              background: "none",
+                              border: "2px solid #35A43C",
+                              borderRadius: "50%",
+                              width: 48,
+                              height: 48,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              cursor: "pointer",
+                              color: "#35A43C",
+                              fontWeight: "bold",
+                            }}
+                            onClick={() => {
+                              audioRef.current?.play();
+                            }}
+                          >
+                            &#x25B7;
+                          </button>
+
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: 12,
+                              fontWeight: "bold",
+                              color: "#35A43C",
+                            }}
+                          >
+                            Odtwórz
+                          </span>
+                        </div>
+                        <audio ref={audioRef} src="/assets/audio/Trex.mp3" />
+                      </div>
+
+                      <Hi />
+                    </>
+                  )}
                   <Flowers />
 
                   {xHovered && (
