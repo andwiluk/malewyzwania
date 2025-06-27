@@ -80,6 +80,14 @@ export function Welcome() {
 
   const showTooltip = dinoHovered || tooltipHovered;
 
+  useEffect(() => {
+    if (dinoHovered) {
+      audioRef.current?.play();
+    } else {
+      audioRef.current?.pause();
+    }
+  }, [dinoHovered]);
+
   const handleDinoMouseLeave = () => {
     hideTooltipTimeout.current = setTimeout(() => {
       setDinoHovered(false);
