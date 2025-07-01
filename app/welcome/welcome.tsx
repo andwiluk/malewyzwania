@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 
 import footer from "./img/footer.png";
 
@@ -19,6 +19,7 @@ import {
   Path5,
   Path6,
   Ptero,
+  ShowCongratulations,
   Step1,
   Step2,
   TripModalButton,
@@ -38,6 +39,7 @@ export function Welcome() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dinoHovered, setDinoHovered] = useState(false);
   const [tooltipHovered, setTooltipHovered] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const hideTooltipTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -57,6 +59,12 @@ export function Welcome() {
   }
 
   const parsedStages = JSON.parse(tripStages);
+
+  useEffect(() => {
+    if (!parsedStages?.stage1) {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   const safeSetStage = (newStage: number) => {
     setStage(newStage);
@@ -78,11 +86,15 @@ export function Welcome() {
     }
   };
 
+  const handleFinalButtonClick = () => {
+    setShowCongratulations(true);
+  }
+
   const showTooltip = dinoHovered || tooltipHovered;
 
   useEffect(() => {
     if (dinoHovered) {
-      audioRef.current?.play();
+      // audioRef.current?.play();
     } else {
       audioRef.current?.pause();
     }
@@ -151,7 +163,7 @@ export function Welcome() {
                   <Dino
                     onMouseEnter={() => {
                       setDinoHovered(true);
-                      audioRef.current?.play();
+                      // audioRef.current?.play();
                     }}
                     // onMouseLeave={() => {
                     //   setDinoHovered(false);
@@ -185,6 +197,7 @@ export function Welcome() {
                             display: "flex",
                             alignItems: "center",
                             marginBottom: 16,
+                            gap: 16,
                           }}
                         >
                           {/* <div
@@ -201,6 +214,7 @@ export function Welcome() {
                         >
                           <Dino style={{ width: 60, height: 60 }} />
                         </div> */}
+                          <img src="/assets/miniatury/trexmini.png" />
                           <div>
                             <div
                               style={{
@@ -343,8 +357,63 @@ export function Welcome() {
                     color={stage >= 7 ? "red" : "gray"}
                     onMouseEnter={() => stage < 7 && setXHovered(true)}
                     onMouseLeave={() => setXHovered(false)}
-                    onClick={() => safeSetStage(7)}
+                    onClick={() => {
+                      safeSetStage(7);
+                      handleFinalButtonClick();
+                    }}
                   />
+                </>
+              )}
+              {showCongratulations && (
+                <>
+                  <ShowCongratulations
+                    style={{
+                      display: 'flex',
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      position: "absolute",
+                      left: "50%",
+                      top: "20%",
+                      transform: "translate(-50%, -20%)",
+                      background: "#FFB800",
+                      backgroundImage: `url('/assets/Krok7/congratulations.png')`,
+                      borderRadius: "24px",
+                      padding: "32px",
+                      width: "1488px",
+                      height: "1157px",
+                      boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                      color: "#1A1A1A",
+                      fontFamily: "inherit",
+                      zIndex: 1000,
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "48px",
+                        color: "#004993",
+                        position: "absolute",
+                        top: 965,
+                        textTransform: "capitalize"
+                      }}>
+                        {localStorage.getItem("heroName") || ""}
+                      </div>
+                    
+                    {/* <button
+                      style={{
+                        background: "#35A43C",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "8px",
+                        padding: "12px 24px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setShowCongratulations(false)}
+                    >
+                      Zamknij
+                    </button> */}
+                  </ShowCongratulations>
                 </>
               )}
             </Step1>

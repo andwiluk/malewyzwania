@@ -302,6 +302,10 @@ export const Cloud = styled.div`
   }
 `;
 
+export const ShowCongratulations = styled.div`
+  
+`;
+
 export const Step1 = styled.div``;
 export const Step2 = styled.div``;
 export const Step3 = styled.div``;
