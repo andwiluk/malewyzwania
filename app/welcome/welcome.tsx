@@ -201,7 +201,7 @@ export function Welcome() {
                           }}
                         >
                           {/* <div
-                          style={{
+                          style={{git
                             width: 80,
                             height: 80,
                             borderRadius: "50%",
@@ -376,7 +376,7 @@ export function Welcome() {
                       left: "50%",
                       top: "20%",
                       transform: "translate(-50%, -20%)",
-                      background: "#FFB800",
+                      background: "transparent",
                       backgroundImage: `url('/assets/Krok7/congratulations.png')`,
                       borderRadius: "24px",
                       padding: "32px",
@@ -395,7 +395,7 @@ export function Welcome() {
                         color: "#004993",
                         position: "absolute",
                         top: 965,
-                        textTransform: "capitalize"
+                        textTransform: "uppercase",
                       }}>
                         {localStorage.getItem("heroName") || ""}
                       </div>
