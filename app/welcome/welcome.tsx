@@ -8,12 +8,15 @@ import {
   BalloonStep3,
   ButtonsContainer,
   Cloud,
+  CloudStep4,
   Dino,
   DinoMiniStep3,
   DinoStep3,
+  DinoStep4,
   Flowers,
   Flowers2,
   FlowersStep3,
+  FlowersStep4,
   Hi,
   Mountain,
   Path1,
@@ -559,6 +562,113 @@ export function Welcome() {
                     onMouseLeave={() => setXHovered(false)}
                     onClick={() => safeSetStage(5)}
                   />
+
+                  <FlowersStep4 />
+
+                  <CloudStep4>
+                    <span>{parsedStages.stage3} km</span>
+                  </CloudStep4>
+                  <DinoStep4
+                    onMouseEnter={() => {
+                      setDinoHovered(4);
+                    }}
+                    onMouseLeave={handleDinoMouseLeave}
+                  />
+                  {showTooltip && dinoHovered === 4 && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: 1320,
+                          top: 890,
+                          zIndex: 100,
+                          background: "#FFB800",
+                          borderRadius: 24,
+                          padding: 32,
+                          width: 400,
+                          boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                          color: "#1A1A1A",
+                          fontFamily: "inherit",
+                        }}
+                        onMouseEnter={handleTooltipMouseEnter}
+                        onMouseLeave={handleTooltipMouseLeave}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: 16,
+                            gap: 16,
+                          }}
+                        >
+                          <img src="/assets/miniatury/stego.png" />
+                          <div>
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: 32,
+                                color: "#E94E1B",
+                              }}
+                            >
+                              Stego
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: 18, marginBottom: 16 }}>
+                          Stegozaur to wesoły dinozaur z grzbietem jak z bajki i
+                          choć wyglądał groźnie, był największym łakomczuchem w
+                          prehistorycznym lesie i uwielbiał liście bardziej niż
+                          czekoladę. Chodził powoli, ale z klasą, machając
+                          ogonem jak wachlarzem. Czasem udawał, że jest wielkim
+                          smokiem, ale każdy wiedział, że to tylko Stego --
+                          przyjaciel do zadań specjalnie zabawnych!
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 4,
+                          }}
+                        >
+                          <button
+                            style={{
+                              background: "none",
+                              border: "2px solid #35A43C",
+                              borderRadius: "50%",
+                              width: 48,
+                              height: 48,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              cursor: "pointer",
+                              color: "#35A43C",
+                              fontWeight: "bold",
+                            }}
+                            onClick={() => {
+                              audioRef.current?.play();
+                            }}
+                          >
+                            &#x25B7;
+                          </button>
+
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: 12,
+                              fontWeight: "bold",
+                              color: "#35A43C",
+                            }}
+                          >
+                            Odtwórz
+                          </span>
+                        </div>
+                        <audio ref={audioRef} src="/assets/audio/Stego.mp3" />
+                      </div>
+                    </>
+                  )}
 
                   {xHovered && (
                     <>

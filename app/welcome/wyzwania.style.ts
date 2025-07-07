@@ -307,7 +307,7 @@ export const DinoStep3 = styled.div`
   width: 310px;
   height: 235px;
   background-image: url(/assets/Krok3/dino.png);
-  position: absolute; 
+  position: absolute;
   top: 1790px;
   left: 245px;
   z-index: 11;
@@ -366,9 +366,57 @@ export const BalloonStep3 = styled.div`
   }
 `;
 
-export const ShowCongratulations = styled.div`
-  
+// STEP 4
+export const DinoStep4 = styled.div`
+  width: 679px;
+  height: 216px;
+  background-image: url(/assets/Krok4/dino4.png);
+  position: absolute;
+  top: 1550px;
+  left: 1215px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1s;
 `;
+
+export const FlowersStep4 = styled.div`
+  width: 921px;
+  height: 742px;
+  background-image: url(/assets/Krok4/flowers4.png);
+  position: absolute;
+  top: 1205px;
+  left: 965px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 0.5s;
+`;
+
+export const CloudStep4 = styled.div`
+  width: 237px;
+  height: 184px;
+  background-image: url(/assets/Krok4/cloud4.png);
+  position: absolute;
+  top: 1380px;
+  left: 970px;
+  z-index: 13;
+
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 2s;
+
+  & > span {
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+  }
+`;
+
+export const ShowCongratulations = styled.div``;
 
 export const Step1 = styled.div``;
 export const Step2 = styled.div``;
