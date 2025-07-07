@@ -5,11 +5,15 @@ import footer from "./img/footer.png";
 import wyzwaniaTop from "./img/wyzwaniaTop.png";
 import TripModal from "~/components/TripModal/TripModal";
 import {
+  BalloonStep3,
   ButtonsContainer,
   Cloud,
   Dino,
+  DinoMiniStep3,
+  DinoStep3,
   Flowers,
   Flowers2,
+  FlowersStep3,
   Hi,
   Mountain,
   Path1,
@@ -37,7 +41,7 @@ export function Welcome() {
   const [stage, setStage] = useState<number>(0);
   const [xHovered, setXHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dinoHovered, setDinoHovered] = useState(false);
+  const [dinoHovered, setDinoHovered] = useState(0);
   const [tooltipHovered, setTooltipHovered] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
 
@@ -88,7 +92,7 @@ export function Welcome() {
 
   const handleFinalButtonClick = () => {
     setShowCongratulations(true);
-  }
+  };
 
   const showTooltip = dinoHovered || tooltipHovered;
 
@@ -102,7 +106,7 @@ export function Welcome() {
 
   const handleDinoMouseLeave = () => {
     hideTooltipTimeout.current = setTimeout(() => {
-      setDinoHovered(false);
+      setDinoHovered(0);
     }, 200);
   };
 
@@ -117,7 +121,7 @@ export function Welcome() {
   const handleTooltipMouseLeave = () => {
     setTooltipHovered(false);
     hideTooltipTimeout.current = setTimeout(() => {
-      setDinoHovered(false);
+      setDinoHovered(0);
     }, 200);
   };
 
@@ -162,18 +166,12 @@ export function Welcome() {
                   <Volcano />
                   <Dino
                     onMouseEnter={() => {
-                      setDinoHovered(true);
-                      // audioRef.current?.play();
+                      setDinoHovered(1);
                     }}
-                    // onMouseLeave={() => {
-                    //   setDinoHovered(false);
-                    //   // audioRef.current?.pause();
-                    //   // audioRef.current!.currentTime = 0;
-                    // }}
                     onMouseLeave={handleDinoMouseLeave}
                     style={{ position: "relative", zIndex: 10 }}
                   />
-                  {showTooltip && (
+                  {showTooltip && dinoHovered === 1 && (
                     <>
                       <div
                         style={{
@@ -305,12 +303,119 @@ export function Welcome() {
                     onMouseLeave={() => setXHovered(false)}
                     onClick={() => safeSetStage(3)}
                   />
-                  <Ptero />
+                  <Ptero
+                    onMouseEnter={() => {
+                      setDinoHovered(2);
+                    }}
+                    onMouseLeave={handleDinoMouseLeave}
+                    // style={{ position: "relative", zIndex: 10 }}
+                  />
+                  {showTooltip && dinoHovered === 2 && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: 820,
+                          top: 910,
+                          zIndex: 100,
+                          background: "#FFB800",
+                          borderRadius: 24,
+                          padding: 32,
+                          width: 400,
+                          boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                          color: "#1A1A1A",
+                          fontFamily: "inherit",
+                        }}
+                        onMouseEnter={handleTooltipMouseEnter}
+                        onMouseLeave={handleTooltipMouseLeave}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: 16,
+                            gap: 16,
+                          }}
+                        >
+                          <img src="/assets/miniatury/pteromini.png" />
+                          <div>
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: 32,
+                                color: "#E94E1B",
+                              }}
+                            >
+                              Ptero
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: 18, marginBottom: 16 }}>
+                          Pterodaktyl to duży, latający gad z czasów
+                          prehistorycznych, który był jednym z pierwszych
+                          odkrytych latających stworzeń. Charakteryzował się
+                          długimi, błoniastymi skrzydłami, które pozwalały mu
+                          latać. Pterodaktyle nie były dinozaurami, ale należały
+                          do grupy pterozaurów, które żyły w tym samym okresie
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 4,
+                          }}
+                        >
+                          <button
+                            style={{
+                              background: "none",
+                              border: "2px solid #35A43C",
+                              borderRadius: "50%",
+                              width: 48,
+                              height: 48,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              cursor: "pointer",
+                              color: "#35A43C",
+                              fontWeight: "bold",
+                            }}
+                            onClick={() => {
+                              audioRef.current?.play();
+                            }}
+                          >
+                            &#x25B7;
+                          </button>
+
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: 12,
+                              fontWeight: "bold",
+                              color: "#35A43C",
+                            }}
+                          >
+                            Odtwórz
+                          </span>
+                        </div>
+                        <audio ref={audioRef} src="/assets/audio/Ptero.mp3" />
+                      </div>
+                    </>
+                  )}
                   <Flowers2 />
                   <Mountain />
                   <Cloud>
                     <span>{parsedStages.stage1} km</span>
                   </Cloud>
+
+                  {xHovered && (
+                    <>
+                      <Path3 color="gray" />
+                      <XButton4 color="gray" />
+                    </>
+                  )}
                 </>
               )}
 
@@ -323,6 +428,125 @@ export function Welcome() {
                     onMouseLeave={() => setXHovered(false)}
                     onClick={() => safeSetStage(4)}
                   />
+
+                  <DinoStep3 />
+                  <DinoMiniStep3
+                    onMouseEnter={() => {
+                      setDinoHovered(3);
+                    }}
+                    onMouseLeave={handleDinoMouseLeave}
+                    style={{ position: "relative", zIndex: 10 }}
+                  />
+                  {showTooltip && dinoHovered === 3 && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: 220,
+                          top: 910,
+                          zIndex: 100,
+                          background: "#FFB800",
+                          borderRadius: 24,
+                          padding: 32,
+                          width: 400,
+                          boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                          color: "#1A1A1A",
+                          fontFamily: "inherit",
+                        }}
+                        onMouseEnter={handleTooltipMouseEnter}
+                        onMouseLeave={handleTooltipMouseLeave}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: 16,
+                            gap: 16,
+                          }}
+                        >
+                          <img src="/assets/miniatury/minidino.png" />
+                          <div>
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: 32,
+                                color: "#E94E1B",
+                              }}
+                            >
+                              Kidosaur
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: 18, marginBottom: 16 }}>
+                          Kidozaur to niezwykły dinozaur, który nigdy nie dorósł
+                          — i wcale nie zamierzał! Wykluł się z jajka pewnego
+                          pochmurnego poranka i od razu postanowił zostać
+                          wiecznym dino-dzieckiem. Miał krótkie łapki idealne do
+                          przytulania, ogromne oczy pełne ciekawości i grzebień
+                          na głowie, który zmieniał kolor w zależności od
+                          nastroju. Czerwony – zły, zielony – głodny, tęczowy –
+                          gotowy na przygodę!
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 4,
+                          }}
+                        >
+                          <button
+                            style={{
+                              background: "none",
+                              border: "2px solid #35A43C",
+                              borderRadius: "50%",
+                              width: 48,
+                              height: 48,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              cursor: "pointer",
+                              color: "#35A43C",
+                              fontWeight: "bold",
+                            }}
+                            onClick={() => {
+                              audioRef.current?.play();
+                            }}
+                          >
+                            &#x25B7;
+                          </button>
+
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: 12,
+                              fontWeight: "bold",
+                              color: "#35A43C",
+                            }}
+                          >
+                            Odtwórz
+                          </span>
+                        </div>
+                        <audio
+                          ref={audioRef}
+                          src="/assets/audio/Kidosaur.mp3"
+                        />
+                      </div>
+                    </>
+                  )}
+                  <FlowersStep3 />
+                  <BalloonStep3>
+                    <span>{parsedStages.stage2} km</span>
+                  </BalloonStep3>
+
+                  {xHovered && (
+                    <>
+                      <Path4 color="gray" />
+                      <XButton5 color="gray" />
+                    </>
+                  )}
                 </>
               )}
 
@@ -335,6 +559,13 @@ export function Welcome() {
                     onMouseLeave={() => setXHovered(false)}
                     onClick={() => safeSetStage(5)}
                   />
+
+                  {xHovered && (
+                    <>
+                      <Path5 color="gray" />
+                      <XButton6 color="gray" />
+                    </>
+                  )}
                 </>
               )}
 
@@ -347,6 +578,13 @@ export function Welcome() {
                     onMouseLeave={() => setXHovered(false)}
                     onClick={() => safeSetStage(6)}
                   />
+
+                  {xHovered && (
+                    <>
+                      <Path6 color="gray" />
+                      <XButton7 color="gray" />
+                    </>
+                  )}
                 </>
               )}
 
@@ -368,7 +606,7 @@ export function Welcome() {
                 <>
                   <ShowCongratulations
                     style={{
-                      display: 'flex',
+                      display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
@@ -396,10 +634,11 @@ export function Welcome() {
                         position: "absolute",
                         top: 965,
                         textTransform: "uppercase",
-                      }}>
-                        {localStorage.getItem("heroName") || ""}
-                      </div>
-                    
+                      }}
+                    >
+                      {localStorage.getItem("heroName") || ""}
+                    </div>
+
                     {/* <button
                       style={{
                         background: "#35A43C",
@@ -418,6 +657,10 @@ export function Welcome() {
               )}
             </Step1>
 
+            <img
+              src="/assets/partners.png"
+              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 left-[320px] bottom-[55px] z-[100]"
+            />
             <ButtonsContainer>
               <button className="bg-red-500 text-white px-4 py-2 rounded-lg">
                 Zapisz postęp

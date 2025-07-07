@@ -302,6 +302,70 @@ export const Cloud = styled.div`
   }
 `;
 
+/// STEP 3
+export const DinoStep3 = styled.div`
+  width: 310px;
+  height: 235px;
+  background-image: url(/assets/Krok3/dino.png);
+  position: absolute; 
+  top: 1790px;
+  left: 245px;
+  z-index: 11;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1s;
+`;
+
+export const DinoMiniStep3 = styled.div`
+  width: 283px;
+  height: 218px;
+  background-image: url(/assets/Krok3/dinomini_1.png);
+  position: absolute;
+  top: 1115px;
+  left: 30px;
+  z-index: 11;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1.5s;
+`;
+
+export const FlowersStep3 = styled.div`
+  width: 500px;
+  height: 667px;
+  background-image: url(/assets/Krok3/flowers.png);
+  position: absolute;
+  top: 1330px;
+  left: 50px;
+  z-index: 1;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 0.5s;
+`;
+
+export const BalloonStep3 = styled.div`
+  width: 238px;
+  height: 341px;
+  background-image: url(/assets/Krok3/balloon.png);
+  position: absolute;
+  top: 1410px;
+  left: 260px;
+  z-index: 12;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 2s;
+
+  & > span {
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 50%;
+    text-align: center;
+  }
+`;
+
 export const ShowCongratulations = styled.div`
   
 `;
