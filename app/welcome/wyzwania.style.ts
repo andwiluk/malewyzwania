@@ -15,7 +15,7 @@ export const XButton = styled.div`
   height: 160px;
   width: 160px;
   background-repeat: no-repeat;
-  z-index: 12;
+  z-index: 100;
 `;
 
 interface XButtonProps {
@@ -416,7 +416,217 @@ export const CloudStep4 = styled.div`
   }
 `;
 
-export const ShowCongratulations = styled.div``;
+// STEP 5
+export const DinoStep5 = styled.div`
+  width: 593px;
+  height: 452px;
+  background-image: url(/assets/Krok5/dino5.png);
+  position: absolute;
+  top: 595px;
+  left: 120px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1s;
+  z-index: 11;
+`;
+
+export const FlowersStep5 = styled.div`
+  width: 675px;
+  height: 1066px;
+  background-image: url(/assets/Krok5/flowers5.png);
+  position: absolute;
+  top: 250px;
+  left: 10px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 0.5s;
+`;
+
+export const Octopus = styled.div`
+  width: 545px;
+  height: 316px;
+  background-image: url(/assets/Krok5/octopus.png);
+  position: absolute;
+  top: 925px;
+  left: 1000px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 2s;
+  z-index: 12;
+`;
+
+export const CloudStep5 = styled.div`
+  width: 237px;
+  height: 184px;
+  background-image: url(/assets/Krok5/cloud5.png);
+  position: absolute;
+  top: 1040px;
+  left: 145px;
+  z-index: 13;
+
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 3s;
+
+  & > span {
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+  }
+`;
+
+export const Palma1 = styled.div`
+  width: 336px;
+  height: 345px;
+  background-image: url(/assets/Krok5/palma1.png);
+  position: absolute;
+  top: 470px;
+  left: 60px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1.5s;
+`;
+
+export const Palma2 = styled.div`
+  width: 262px;
+  height: 279px;
+  background-image: url(/assets/Krok5/palma2.png);
+  position: absolute;
+  top: 470px;
+  left: 410px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 2s;
+`;
+
+// STEP 6
+export const DinoStep6 = styled.div`
+  width: 751px;
+  height: 362px;
+  background-image: url(/assets/Krok6/dino6.png);
+  position: absolute;
+  top: 230px;
+  left: 1145px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1s;
+  z-index: 11;
+`;
+
+export const FlowersStep6 = styled.div`
+  width: 915px;
+  height: 605px;
+  background-image: url(/assets/Krok6/flowers6.png);
+  position: absolute;
+  top: 270px;
+  left: 905px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 0.5s;
+`;
+
+export const CloudStep6 = styled.div`
+  width: 377px;
+  height: 326px;
+  background-image: url(/assets/Krok6/cloud6.png);
+  position: absolute;
+  top: 580px;
+  left: 1445px;
+  z-index: 13;
+
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 2s;
+
+  & > span {
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    top: 70%;
+    left: 65%;
+    text-align: center;
+  }
+`;
+
+export const MountainStep6 = styled.div`
+  width: 418px;
+  height: 224px;
+  background-image: url(/assets/Krok6/mountain6.png);
+  position: absolute;
+  top: 600px;
+  left: 435px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 3s;
+`;
+
+// Step 7
+export const DinoStep7 = styled.div`
+  width: 635px;
+  height: 350px;
+  background-image: url(/assets/Krok7/dino7.png);
+  position: absolute;
+  top: 145px;
+  left: 1005px;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 1s;
+  z-index: 11;
+`;
+
+export const CloudStep7 = styled.div`
+  width: 253px;
+  height: 184px;
+  background-image: url(/assets/Krok7/cloud7.png);
+  position: absolute;
+  top: 145px;
+  left: 735px;
+  z-index: 13;
+  opacity: 0;
+  animation: ${showElement} 0.5s ease forwards;
+  animation-delay: 2s;
+  & > span {
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+  }
+`;
+
+export const Meta = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 600px;
+  width: 296px;
+  height: 105px;
+  background-image: url(/assets/Krok7/meta.png);
+`;
+
+////
+
+export const Logo = styled.img`
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 231px;
+  height: 271px;
+  z-index: 0;
+`;
+
+export const ShowCongratulations = styled.div`
+  z-index: 200;
+`;
 
 export const Step1 = styled.div``;
 export const Step2 = styled.div``;

@@ -9,16 +9,28 @@ import {
   ButtonsContainer,
   Cloud,
   CloudStep4,
+  CloudStep5,
+  CloudStep6,
+  CloudStep7,
   Dino,
   DinoMiniStep3,
   DinoStep3,
   DinoStep4,
+  DinoStep5,
+  DinoStep6,
   Flowers,
   Flowers2,
   FlowersStep3,
   FlowersStep4,
+  FlowersStep5,
+  FlowersStep6,
   Hi,
+  Logo,
+  Meta,
   Mountain,
+  Octopus,
+  Palma1,
+  Palma2,
   Path1,
   Path2,
   Path3,
@@ -689,6 +701,116 @@ export function Welcome() {
                     onClick={() => safeSetStage(6)}
                   />
 
+                  <FlowersStep5 />
+                  <Octopus />
+                  <Palma1 />
+                  <Palma2 />
+
+                  <CloudStep5>
+                    <span>{parsedStages.stage4} km</span>
+                  </CloudStep5>
+                  <DinoStep5
+                    onMouseEnter={() => {
+                      setDinoHovered(5);
+                    }}
+                    onMouseLeave={handleDinoMouseLeave}
+                  />
+                  {showTooltip && dinoHovered === 5 && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 35,
+                          left: 400,
+                          zIndex: 100,
+                          background: "#FFB800",
+                          borderRadius: 24,
+                          padding: 32,
+                          width: 500,
+                          boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                          color: "#1A1A1A",
+                          fontFamily: "inherit",
+                        }}
+                        onMouseEnter={handleTooltipMouseEnter}
+                        onMouseLeave={handleTooltipMouseLeave}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: 16,
+                            gap: 16,
+                          }}
+                        >
+                          <img src="/assets/miniatury/brachio.png" />
+                          <div>
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: 32,
+                                color: "#E94E1B",
+                              }}
+                            >
+                              Brachiozaur
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: 18, marginBottom: 16 }}>
+                          Brachiozaur miał tak długą szyję, że jego serce
+                          musiało być superbohaterem! Ważyło pewnie ponad 400 kg
+                          – czyli tyle, co bardzo duży hipopotam – tylko po to,
+                          by pompować krew aż do jego głowy i wymyślać różne
+                          fajne zabawy. Dzięki temu też mógł mieć jedno z
+                          największych serc w dziejach wszystkich dino-ziemskich
+                          stworzeń!
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 4,
+                          }}
+                        >
+                          <button
+                            style={{
+                              background: "none",
+                              border: "2px solid #35A43C",
+                              borderRadius: "50%",
+                              width: 48,
+                              height: 48,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              cursor: "pointer",
+                              color: "#35A43C",
+                              fontWeight: "bold",
+                            }}
+                            onClick={() => {
+                              audioRef.current?.play();
+                            }}
+                          >
+                            &#x25B7;
+                          </button>
+
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: 12,
+                              fontWeight: "bold",
+                              color: "#35A43C",
+                            }}
+                          >
+                            Odtwórz
+                          </span>
+                        </div>
+                        <audio ref={audioRef} src="/assets/audio/Brochio.mp3" />
+                      </div>
+                    </>
+                  )}
+
                   {xHovered && (
                     <>
                       <Path6 color="gray" />
@@ -710,8 +832,134 @@ export function Welcome() {
                       handleFinalButtonClick();
                     }}
                   />
+
+                  <FlowersStep6 />
+                  <CloudStep6>
+                    <span>{parsedStages.stage5} km</span>
+                  </CloudStep6>
+
+                  <DinoStep6
+                    onMouseEnter={() => {
+                      setDinoHovered(6);
+                    }}
+                    onMouseLeave={handleDinoMouseLeave}
+                  />
+                  {showTooltip && dinoHovered === 6 && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 35,
+                          left: 1400,
+                          zIndex: 100,
+                          background: "#FFB800",
+                          borderRadius: 24,
+                          padding: 32,
+                          width: 500,
+                          boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                          color: "#1A1A1A",
+                          fontFamily: "inherit",
+                        }}
+                        onMouseEnter={handleTooltipMouseEnter}
+                        onMouseLeave={handleTooltipMouseLeave}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: 16,
+                            gap: 16,
+                          }}
+                        >
+                          <img src="/assets/miniatury/trice.png" />
+                          <div>
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: 32,
+                                color: "#E94E1B",
+                              }}
+                            >
+                              Triceratops
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: 18, marginBottom: 16 }}>
+                          Ten prehistoryczny nosorożec wyglądał jak czołg z
+                          trzema rogami i ogromną kołnierzową tarczą na głowie!
+                          Ale zamiast walczyć, wolał chrupać liście i spacerować
+                          z przyjaciółmi. Rogi pomagały mu odstraszać złośliwe
+                          dinozaury, a tarcza działała trochę jak parasol i
+                          trochę jak zbroja. Był roślinożercą z charakterem!
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            gap: 4,
+                          }}
+                        >
+                          <button
+                            style={{
+                              background: "none",
+                              border: "2px solid #35A43C",
+                              borderRadius: "50%",
+                              width: 48,
+                              height: 48,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              cursor: "pointer",
+                              color: "#35A43C",
+                              fontWeight: "bold",
+                            }}
+                            onClick={() => {
+                              audioRef.current?.play();
+                            }}
+                          >
+                            &#x25B7;
+                          </button>
+
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: 12,
+                              fontWeight: "bold",
+                              color: "#35A43C",
+                            }}
+                          >
+                            Odtwórz
+                          </span>
+                        </div>
+                        <audio
+                          ref={audioRef}
+                          src="/assets/audio/Triceratops.mp3"
+                        />
+                      </div>
+                    </>
+                  )}
                 </>
               )}
+
+              {stage >= 7 && (
+                <>
+                  <XButton7
+                    color={stage >= 7 ? "red" : "gray"}
+                    onMouseEnter={() => stage < 7 && setXHovered(true)}
+                    onMouseLeave={() => setXHovered(false)}
+                  />
+                  <CloudStep7>
+                    <span>{parsedStages.stage6} km</span>
+                  </CloudStep7>
+                  <Meta />
+                </>
+              )}
+
+              <Logo src="/assets/logo.png" alt="Logo" />
+
               {showCongratulations && (
                 <>
                   <ShowCongratulations
@@ -722,7 +970,7 @@ export function Welcome() {
                       justifyContent: "center",
                       position: "absolute",
                       left: "50%",
-                      top: "20%",
+                      top: "30%",
                       transform: "translate(-50%, -20%)",
                       background: "transparent",
                       backgroundImage: `url('/assets/Krok7/congratulations.png')`,
