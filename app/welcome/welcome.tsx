@@ -109,6 +109,12 @@ export function Welcome() {
     setShowCongratulations(true);
   };
 
+  useEffect(() => {
+    if (stage < 7) {
+      setShowCongratulations(false);
+    }
+  }, [stage]);
+
   const showTooltip = dinoHovered || tooltipHovered;
 
   useEffect(() => {
