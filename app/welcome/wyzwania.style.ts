@@ -663,7 +663,7 @@ export const CloudStep7 = styled.div`
   & > span {
     position: absolute;
     font-size: 30px;
-    color: #ffaa10;
+    color: rgb(241, 79, 15);
     font-weight: bold;
     transform: translate(-50%, -50%);
     top: 50%;
