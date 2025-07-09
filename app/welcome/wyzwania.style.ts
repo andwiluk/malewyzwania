@@ -296,8 +296,8 @@ export const Cloud = styled.div`
     position: absolute;
     top: 40px;
     left: 35px;
-    font-size: 25px;
-    color: white;
+    font-size: 30px;
+    color: #ffaa10;
     font-weight: bold;
   }
 `;
@@ -356,8 +356,8 @@ export const BalloonStep3 = styled.div`
 
   & > span {
     position: absolute;
-    font-size: 25px;
-    color: white;
+    font-size: 30px;
+    color: #ffaa10;
     font-weight: bold;
     transform: translate(-50%, -50%);
     top: 25%;
@@ -406,8 +406,8 @@ export const CloudStep4 = styled.div`
 
   & > span {
     position: absolute;
-    font-size: 25px;
-    color: white;
+    font-size: 30px;
+    color: #ffaa10;
     font-weight: bold;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -470,8 +470,8 @@ export const CloudStep5 = styled.div`
 
   & > span {
     position: absolute;
-    font-size: 25px;
-    color: white;
+    font-size: 30px;
+    color: #ffaa10;
     font-weight: bold;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -545,8 +545,8 @@ export const CloudStep6 = styled.div`
 
   & > span {
     position: absolute;
-    font-size: 25px;
-    color: white;
+    font-size: 30px;
+    color: #ffaa10;
     font-weight: bold;
     transform: translate(-50%, -50%);
     top: 70%;
@@ -594,8 +594,8 @@ export const CloudStep7 = styled.div`
   animation-delay: 2s;
   & > span {
     position: absolute;
-    font-size: 25px;
-    color: white;
+    font-size: 30px;
+    color: #ffaa10;
     font-weight: bold;
     transform: translate(-50%, -50%);
     top: 50%;
