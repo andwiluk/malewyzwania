@@ -8,6 +8,20 @@ const showElement = keyframes`
   to { opacity: 1; }
 `;
 
+const dinoDance = keyframes`
+  0% { transform: translateY(0) rotate(0deg);}
+  10% { transform: translateY(-10px) rotate(-10deg);}
+  20% { transform: translateY(0) rotate(10deg);}
+  30% { transform: translateY(-10px) rotate(-10deg);}
+  40% { transform: translateY(0) rotate(10deg);}
+  50% { transform: translateY(-10px) rotate(-10deg);}
+  60% { transform: translateY(0) rotate(10deg);}
+  70% { transform: translateY(-10px) rotate(-10deg);}
+  80% { transform: translateY(0) rotate(10deg);}
+  90% { transform: translateY(-10px) rotate(-10deg);}
+  100% { transform: translateY(0) rotate(0deg);}
+`;
+
 export const XButton = styled.div`
   position: absolute;
   cursor: pointer;
@@ -223,6 +237,12 @@ export const Dino = styled.div`
   // &:hover + ${Hi} {
   //   display: block;
   // }
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const Flowers = styled.div`
@@ -251,6 +271,12 @@ export const Ptero = styled.div`
   opacity: 0;
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 2s;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const Flowers2 = styled.div`
@@ -314,6 +340,12 @@ export const DinoStep3 = styled.div`
   opacity: 0;
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 1s;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const DinoMiniStep3 = styled.div`
@@ -377,6 +409,12 @@ export const DinoStep4 = styled.div`
   opacity: 0;
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 1s;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const FlowersStep4 = styled.div`
@@ -428,6 +466,12 @@ export const DinoStep5 = styled.div`
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 1s;
   z-index: 11;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const FlowersStep5 = styled.div`
@@ -453,6 +497,12 @@ export const Octopus = styled.div`
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 2s;
   z-index: 12;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const CloudStep5 = styled.div`
@@ -490,6 +540,12 @@ export const Palma1 = styled.div`
   opacity: 0;
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 1.5s;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const Palma2 = styled.div`
@@ -502,6 +558,12 @@ export const Palma2 = styled.div`
   opacity: 0;
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 2s;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 // STEP 6
@@ -516,6 +578,12 @@ export const DinoStep6 = styled.div`
   animation: ${showElement} 0.5s ease forwards;
   animation-delay: 1s;
   z-index: 11;
+
+  &.dino-dance {
+    animation: ${showElement} 0.5s ease forwards 1s,
+      ${dinoDance} 4s linear infinite 1.5s;
+    /* The dance starts after show animation */
+  }
 `;
 
 export const FlowersStep6 = styled.div`

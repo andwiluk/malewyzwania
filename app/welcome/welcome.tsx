@@ -63,6 +63,16 @@ export function Welcome() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const hideTooltipTimeout = useRef<NodeJS.Timeout | null>(null);
 
+  const [dinoDance, setDinoDance] = useState(false);
+
+  useEffect(() => {
+    if (showCongratulations) {
+      setDinoDance(true);
+      const timeout = setTimeout(() => setDinoDance(false), 90000);
+      return () => clearTimeout(timeout);
+    }
+  }, [showCongratulations]);
+
   useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {
       const storedStage = localStorage.getItem("stage");
@@ -186,6 +196,7 @@ export function Welcome() {
                   />
                   <Volcano />
                   <Dino
+                    className={dinoDance ? "dino-dance" : ""}
                     onMouseEnter={() => {
                       setDinoHovered(1);
                     }}
@@ -325,6 +336,7 @@ export function Welcome() {
                     onClick={() => safeSetStage(3)}
                   />
                   <Ptero
+                    className={dinoDance ? "dino-dance" : ""}
                     onMouseEnter={() => {
                       setDinoHovered(2);
                     }}
@@ -450,8 +462,9 @@ export function Welcome() {
                     onClick={() => safeSetStage(4)}
                   />
 
-                  <DinoStep3 />
+                  <DinoStep3 className={dinoDance ? "dino-dance" : ""} />
                   <DinoMiniStep3
+                    className={dinoDance ? "dino-dance" : ""}
                     onMouseEnter={() => {
                       setDinoHovered(3);
                     }}
@@ -587,6 +600,7 @@ export function Welcome() {
                     <span>{parsedStages.stage3} km</span>
                   </CloudStep4>
                   <DinoStep4
+                    className={dinoDance ? "dino-dance" : ""}
                     onMouseEnter={() => {
                       setDinoHovered(4);
                     }}
@@ -708,7 +722,7 @@ export function Welcome() {
                   />
 
                   <FlowersStep5 />
-                  <Octopus />
+                  <Octopus className={dinoDance ? "dino-dance" : ""} />
                   <Palma1 />
                   <Palma2 />
 
@@ -716,6 +730,7 @@ export function Welcome() {
                     <span>{parsedStages.stage4} km</span>
                   </CloudStep5>
                   <DinoStep5
+                    className={dinoDance ? "dino-dance" : ""}
                     onMouseEnter={() => {
                       setDinoHovered(5);
                     }}
@@ -845,6 +860,7 @@ export function Welcome() {
                   </CloudStep6>
 
                   <DinoStep6
+                    className={dinoDance ? "dino-dance" : ""}
                     onMouseEnter={() => {
                       setDinoHovered(6);
                     }}
