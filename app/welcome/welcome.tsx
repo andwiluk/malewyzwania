@@ -159,8 +159,8 @@ export function Welcome() {
   return (
     <main className="flex items-center justify-center pb-4 w-[1900px] mx-auto z-[1]">
       <div className="flex-1 flex flex-col items-center gap-0 min-h-0">
-        <div className="max-w-[1920px] w-full space-y-0 px-4 header"></div>
-        <div className="max-w-[1920px] max-w-[1920px] w-full space-y-0 px-4 challengesTop"></div>
+        {/* <div className="max-w-[1920px] w-full space-y-0 px-4 header"></div> */}
+        {/* <div className="max-w-[1920px] max-w-[1920px] w-full space-y-0 px-4 challengesTop"></div> */}
         <div
           className="max-w-[1920px] w-full space-y-0 main"
           style={{ backgroundImage: `url('/assets/mapa-0.jpg')` }}
@@ -1060,7 +1060,7 @@ export function Welcome() {
             </ButtonsContainer>
           </div>
         </div>
-        <div className="max-w-[1920px] w-full space-y-0 px-4 footer"></div>
+        {/* <div className="max-w-[1920px] w-full space-y-0 px-4 footer"></div> */}
       </div>
 
       <TripModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
