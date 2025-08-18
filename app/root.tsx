@@ -28,12 +28,35 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=1920" />
         <Meta />
         <Links />
+        <style>
+          {`
+            .scaled-container {
+              width: 1920px;
+              margin: 0 auto;
+              min-height: 100vh;
+              transform-origin: top left;
+            }
+            @media (max-width: 1920px) {
+              .scaled-container {
+                transform: scale(calc(100vw / 1920));
+              }
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              overflow-x: auto;
+              background: #fff;
+            }
+          `}
+        </style>
       </head>
       <body>
-        {children}
+        <div className="scaled-container">
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
