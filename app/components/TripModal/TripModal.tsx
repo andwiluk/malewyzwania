@@ -26,6 +26,9 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
     stage6: "",
   });
   const [heroName, setHeroName] = useState<string>("");
+  const [tripUnit, setTripUnit] = useState<string>(() => {
+    return localStorage.getItem("tripUnit") || "km";
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -111,6 +114,23 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
           </p>
         </div>
 
+        <div className="flex justify-center items-center mt-4 space-x-4">
+          {["km", "kroki", "minuty"].map((unit) => (
+            <button
+              key={unit}
+              onClick={() => { localStorage.setItem("tripUnit", unit); setTripUnit(unit) } }
+              className={`px-4 py-2 rounded-lg font-bold border ${
+                localStorage.getItem("tripUnit") === unit
+                  ? "bg-blue-700 text-white"
+                  : "bg-white text-blue-700"
+              }`}
+              type="button"
+            >
+              {unit.charAt(0).toUpperCase() + unit.slice(1)}
+            </button>
+          ))}
+        </div>
+
         <div className="mt-4 space-y-2">
           {[...Array(6)].map((_, index) => {
             const stageKey = `stage${index + 1}` as keyof Stages;
@@ -126,7 +146,7 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
                   placeholder=""
                   className="w-[150px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-blue-700 font-bold"
                 />
-                &nbsp;<span className="text-blue-700">km</span>
+                <span className="text-blue-700">&nbsp;{localStorage.getItem("tripUnit") || "km"}</span>
               </div>
             );
           })}

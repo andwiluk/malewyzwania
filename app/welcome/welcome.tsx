@@ -440,7 +440,9 @@ export function Welcome() {
                   <Flowers2 />
                   <Mountain />
                   <Cloud>
-                    <span>{parsedStages.stage1} km</span>
+                    <span>
+                      {parsedStages.stage1} {localStorage.getItem("tripUnit")}
+                    </span>
                   </Cloud>
 
                   {xHovered && (
@@ -572,7 +574,7 @@ export function Welcome() {
                   )}
                   <FlowersStep3 />
                   <BalloonStep3>
-                    <span>{parsedStages.stage2} km</span>
+                    <span>{parsedStages.stage2} {localStorage.getItem("tripUnit")}</span>
                   </BalloonStep3>
 
                   {xHovered && (
@@ -597,7 +599,7 @@ export function Welcome() {
                   <FlowersStep4 />
 
                   <CloudStep4>
-                    <span>{parsedStages.stage3} km</span>
+                    <span>{parsedStages.stage3} {localStorage.getItem("tripUnit")}</span>
                   </CloudStep4>
                   <DinoStep4
                     className={dinoDance ? "dino-dance" : ""}
@@ -727,7 +729,7 @@ export function Welcome() {
                   <Palma2 />
 
                   <CloudStep5>
-                    <span>{parsedStages.stage4} km</span>
+                    <span>{parsedStages.stage4} {localStorage.getItem("tripUnit")}</span>
                   </CloudStep5>
                   <DinoStep5
                     className={dinoDance ? "dino-dance" : ""}
@@ -856,7 +858,7 @@ export function Welcome() {
 
                   <FlowersStep6 />
                   <CloudStep6>
-                    <span>{parsedStages.stage5} km</span>
+                    <span>{parsedStages.stage5} {localStorage.getItem("tripUnit")}</span>
                   </CloudStep6>
 
                   <DinoStep6
@@ -974,7 +976,7 @@ export function Welcome() {
                     onMouseLeave={() => setXHovered(false)}
                   />
                   <CloudStep7>
-                    <span>{parsedStages.stage6} km</span>
+                    <span>{parsedStages.stage6} {localStorage.getItem("tripUnit")}</span>
                   </CloudStep7>
                   <Meta />
                 </>
