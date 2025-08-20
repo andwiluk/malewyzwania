@@ -27,11 +27,14 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
   });
   const [heroName, setHeroName] = useState<string>("");
   const [tripUnit, setTripUnit] = useState<string>(() => {
-    return localStorage.getItem("tripUnit") || "km";
+    if (typeof window !== "undefined" && window.localStorage) {
+      return localStorage.getItem("tripUnit") || "km";
+    }
+    return "km";
   });
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof window !== "undefined" && window.localStorage) {
       const saved = localStorage.getItem("tripStages");
       const heroName = localStorage.getItem("heroName");
 
@@ -115,20 +118,21 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="flex justify-center items-center mt-4 space-x-4">
-          {["km", "kroki", "minuty"].map((unit) => (
+          {["km", "kroki", "minuty"].map((unit) =>{ 
+            return (
             <button
               key={unit}
               onClick={() => { localStorage.setItem("tripUnit", unit); setTripUnit(unit) } }
-              className={`px-4 py-2 rounded-lg font-bold border ${
-                localStorage.getItem("tripUnit") === unit
-                  ? "bg-blue-700 text-white"
-                  : "bg-white text-blue-700"
+              className={`px-4 py-2 rounded-lg font-bold border cursor-pointer ${
+              localStorage.getItem("tripUnit") === unit
+                ? "bg-blue-700 text-white"
+                : "bg-white text-blue-700"
               }`}
               type="button"
             >
               {unit.charAt(0).toUpperCase() + unit.slice(1)}
             </button>
-          ))}
+          )})}
         </div>
 
         <div className="mt-4 space-y-2">
