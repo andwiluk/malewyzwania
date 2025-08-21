@@ -104,7 +104,7 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
           <p className="text-center mt-2 font-bold">
             Przed Tobą 6 etapów wycieczki!
             <br />
-            Zdecyduj ile kilometrów mają mieć Twoje poszczególne etapy
+            Zdecyduj ile trwać mają Twoje poszczególne etapy
             <span className="text-red-600">*</span>. Pamiętaj, to tylko zabawa
             :)
             <br />
@@ -113,12 +113,17 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
 
           <p className="text-xs text-center mt-2 text-red-600 text-[14px] font-bold">
             *nie musisz definiować długości wszystkich etapów już teraz, możesz
-            to zrobić w trakcie trwania wycieczki!
+            to zrobić w trakcie trwania wycieczki! 
+            Długość poszczególnych etapów możesz zmieniać w każdym momencie wycieczki. Przed uruchomieniem mapy, konieczne jest zdefiniowanie 1 etapu.
           </p>
         </div>
 
         <div className="flex justify-center items-center mt-4 space-x-4">
           {["km", "kroki", "minuty"].map((unit) =>{ 
+            if (unit === "minuty") {
+              unit = "min."
+            }
+            
             return (
             <button
               key={unit}
@@ -130,7 +135,7 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
               }`}
               type="button"
             >
-              {unit.charAt(0).toUpperCase() + unit.slice(1)}
+              {unit}
             </button>
           )})}
         </div>
