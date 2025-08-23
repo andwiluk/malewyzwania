@@ -185,13 +185,19 @@ const TripModal: FC<TripModalProps> = ({ isOpen, onClose }) => {
             Zapisz
           </button>
           <style>{`
-      .tripModal {
-        background-color: #ffaa10;
+            .tripModal {
+              background-color: #ffaa10;
 
-        input[type="text"] {
-        background-color: #fff;
-        }
-      }
+              input[type="text"] {
+                background-color: #fff;
+              }
+                
+              transform: scale(1.5);
+
+              @media (max-width: 768px) {
+                transform: scale(2.5);
+              }
+            }
         `}</style>
         </div>
       </div>

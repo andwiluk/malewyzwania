@@ -1041,7 +1041,7 @@ export function Welcome() {
 
             <img
               src="/assets/partners.png"
-              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 left-[320px] bottom-[55px] z-[100]"
+              className="partners absolute bottom-0 left-[320px] bottom-[55px] z-[100]"
             />
             <ButtonsContainer>
               <button className="bg-red-500 text-white px-4 py-2 rounded-lg">

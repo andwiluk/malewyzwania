@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import React, { useEffect, useState } from "react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -24,31 +25,57 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScale(window.innerWidth / 1920);
+    };
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=1920" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
         <style>
           {`
-            .scaled-container {
-              width: 1920px;
-              margin: 0 auto;
-              min-height: 100vh;
-              transform-origin: top left;
-            }
-            @media (max-width: 1920px) {
-              .scaled-container {
-                transform: scale(calc(100vw / 1920));
-              }
-            }
-            body {
+            html, body {
+              width: 100vw;
+              height: 100vh;
               margin: 0;
               padding: 0;
-              overflow-x: auto;
-              background: #fff;
+              overflow-x: hidden;
+            }
+
+            body {
+              background: #525252;
+              position: relative;
+            }
+
+            .scaled-container {
+              width: 1920px;
+              transform: scale(${scale});
+              transform-origin: top left;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+            
+            .partners {
+              position: absolute;
+              left: 100px; 
+              
+              @media (max-width: 768px) {
+                transform: scale(2.5);
+                bottom: 200px;
+                left: 500px;
+              }
             }
           `}
         </style>

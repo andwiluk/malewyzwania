@@ -190,6 +190,10 @@ export const ButtonsContainer = styled.div`
   & > button {
     cursor: pointer;
   }
+  
+  @media (max-width: 768px) {
+    transform: scale(2.5);
+  }
 `;
 
 export const TripModalButton = styled.button`
